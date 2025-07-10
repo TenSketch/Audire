@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const productCategories = [
   {
     name: 'High-End AV',
     description: 'Experience acoustic perfection with our curated selection of audiophile-grade speaker systems, amplifiers, and more.',
     image: '/images/high-end-av.jpg',
-    link: '#high-end-av',
+    link: '/high-end-av',
   },
   {
     name: 'Home Theater',
@@ -63,12 +64,13 @@ export default function OurProducts() {
 
             {/* Learn More Button - plain black text with arrow */}
             <div className="absolute left-6 no-underline bottom-4 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-              <a
-                href={product.link}
+              <Link
+                to={product.link}
                 className="text-sm no-underline text-black font-medium"
               >
                 Learn More →
-              </a>
+              </Link>
+
             </div>
           </motion.div>
         ))}
