@@ -3,23 +3,27 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+import Highend from '../assets/images/highendev.avif';
+import HomeTheater from '../assets/images/hometheater.avif';
+import Automation from '../assets/images/automation.avif';
+
 const productCategories = [
   {
     name: 'High-End AV',
     description: 'Experience acoustic perfection with our curated selection of audiophile-grade speaker systems, amplifiers, and more.',
-    image: '/images/high-end-av.jpg',
+    image: Highend,
     link: '/high-end-av',
   },
   {
     name: 'Home Theater',
     description: 'Bring the cinema home with cutting-edge projection systems, acoustics, and immersive surround sound setups.',
-    image: '/images/home-theater.jpg',
+    image: HomeTheater,
     link: '#home-theater',
   },
   {
     name: 'Automation & Security',
     description: 'Advanced control and monitoring systems that simplify and secure your living environment.',
-    image: '/images/automation.jpg',
+    image: Automation,
     link: '#automation',
   },
 ];
