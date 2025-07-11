@@ -69,27 +69,34 @@ export function NavBar({ items, className }: NavBarProps) {
     return false;
   };
 
-  const handleNavigation = (item: NavItem) => {
+    const handleNavigation = (item: NavItem) => {
     if (item.url === "/") {
-      navigate("/");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveTab("Home");
+        navigate("/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveTab("Home");
     } else if (item.url === "/high-end-av") {
-      navigate("/high-end-av");
-      setActiveTab("High-End AV");
+        navigate("/high-end-av");
+        setActiveTab("High-End AV");
+    } else if (item.url === "/home-theater") {
+        navigate("/home-theater");
+        setActiveTab("Home Theater");
+    } else if (item.url === "/automation-systems") {
+        navigate("/automation-systems");
+        setActiveTab("Automation Systems");
     } else if (item.url.startsWith("/#")) {
-      const hash = item.url.substring(2);
+        const hash = item.url.substring(2);
 
-      if (location.pathname !== "/") {
+        if (location.pathname !== "/") {
         navigate("/");
         setTimeout(() => scrollToElement(hash), 300);
-      } else {
+        } else {
         scrollToElement(hash);
-      }
+        }
 
-      setActiveTab(item.name);
+        setActiveTab(item.name);
     }
-  };
+    };
+
 
   return (
     <AnimatePresence>

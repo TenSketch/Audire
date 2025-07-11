@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, User, AudioWaveform, Award } from 'lucide-react';
+import { Home, User, AudioLines,ShieldAlert, Theater } from 'lucide-react';
 import Demo from './components/blocks/Demo';
 import Awards from './components/Awards';
 import Footer from './components/Footer';
 import OurProducts from './components/OurProducts';
 import HighEndAV from './pages/HighEndAv'; 
+import HomeTheater from './pages/HomeTheater';
+import AutomationSystems from './pages/AutomationSystem';
 import { NavBar } from './components/ui/tubelight-navbar';
 
 function App() {
@@ -13,8 +15,9 @@ function App() {
       <NavBar
         items={[
           { name: 'About', url: '/#about', icon: User },
-          { name: 'Products', url: '/#products', icon: AudioWaveform },
-          { name: 'High-End AV', url: '/high-end-av', icon: Award },
+          { name: 'High-End AV', url: '/high-end-av', icon: AudioLines },
+          { name: 'Home Theater', url: '/home-theater', icon: Theater },
+          { name: 'Automation Systems', url: '/automation-systems', icon: ShieldAlert },
         ]}
       />
       <Routes>
@@ -33,6 +36,10 @@ function App() {
 
         {/* High-End AV Page */}
         <Route path="/high-end-av" element={<HighEndAV />} />
+        <Route path="/home-theater" element={<HomeTheater />} />
+        <Route path="/automation-systems" element={<AutomationSystems />} />
+
+        {/* Fallback Route */}
       </Routes>
     </Router>
   );

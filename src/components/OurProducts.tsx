@@ -18,13 +18,13 @@ const productCategories = [
     name: 'Home Theater',
     description: 'Bring the cinema home with cutting-edge projection systems, acoustics, and immersive surround sound setups.',
     image: HomeTheater,
-    link: '#home-theater',
+    link: '/home-theater',
   },
   {
     name: 'Automation & Security',
     description: 'Advanced control and monitoring systems that simplify and secure your living environment.',
     image: Automation,
-    link: '#automation',
+    link: '/automation-systems',
   },
 ];
 
