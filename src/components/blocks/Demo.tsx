@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import ScrollExpandMedia from './ScrollExpandMedia';
 import MyVideo from '../../assets/videos/video1.mp4';
+import Mybackground from '../../assets/images/background1.jpg'; // Adjust the import path as needed
 
 
 interface MediaAbout {
@@ -94,7 +95,7 @@ export const VideoExpansionTextBlend = () => {
         mediaType={mediaType}
         mediaSrc={currentMedia.src}
         posterSrc={currentMedia.poster}
-        bgImageSrc={currentMedia.background}
+        bgImageSrc={Mybackground}
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}
@@ -122,7 +123,7 @@ export const ImageExpansionTextBlend = () => {
       <ScrollExpandMedia
         mediaType={mediaType}
         mediaSrc={currentMedia.src}
-        bgImageSrc={currentMedia.background}
+        bgImageSrc={Mybackground}
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}
@@ -151,7 +152,7 @@ export const VideoExpansion = () => {
         mediaType={mediaType}
         mediaSrc={currentMedia.src}
         posterSrc={currentMedia.poster}
-        bgImageSrc={currentMedia.background}
+        bgImageSrc={Mybackground}
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}
@@ -178,7 +179,7 @@ export const ImageExpansion = () => {
       <ScrollExpandMedia
         mediaType={mediaType}
         mediaSrc={currentMedia.src}
-        bgImageSrc={currentMedia.background}
+        bgImageSrc={Mybackground}
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}
@@ -230,7 +231,7 @@ const Demo = () => {
         mediaType={mediaType as 'video' | 'image'}
         mediaSrc={currentMedia.src}
         posterSrc={mediaType === 'video' ? currentMedia.poster : undefined}
-        bgImageSrc={currentMedia.background}
+        bgImageSrc={Mybackground}
         title={currentMedia.title}
         date={currentMedia.date}
         scrollToExpand={currentMedia.scrollToExpand}

@@ -176,15 +176,16 @@ const ScrollExpandMedia = ({
       <section className='relative flex flex-col items-center justify-start min-h-[100dvh]'>
         <div className='relative w-full flex flex-col items-center min-h-[100dvh]'>
           <motion.div
-            className='absolute inset-0 z-0 h-full'
+            className="absolute inset-0 z-0 h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: bgImageSrc ? `url(${bgImageSrc})` : 'none',
+              backgroundColor: !bgImageSrc ? '#000' : undefined, // fallback for no image
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 - scrollProgress }}
-            transition={{ duration: 0.1 }}>
-            
-            <img src={Image} alt="" />
+            transition={{ duration: 0.1 }}
+          />
 
-            <div className='absolute inset-0 bg-black/10' />
-          </motion.div>
 
           <div className='container mx-auto flex flex-col items-center justify-start relative z-10'>
             <div className='flex flex-col items-center justify-center w-full h-[100dvh] relative'>
