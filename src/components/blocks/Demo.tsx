@@ -63,7 +63,7 @@ const MediaContent = ({ mediaType }: { mediaType: 'video' | 'image' }) => {
   const currentMedia = sampleMediaContent[mediaType];
 
   return (
-    <div id='about' className='max-w-4xl mx-auto'>
+    <div id="about" className='max-w-4xl mx-auto'>
       <h2 className='text-3xl font-bold mb-6 text-black dark:text-black'>
         About Audire
       </h2>
@@ -202,7 +202,7 @@ const Demo = () => {
   }, [mediaType]);
 
   return (
-    <div className='min-h-screen'>
+    <div id="about" className='min-h-screen'>
       {/* <div className='fixed top-4 right-4 z-50 flex gap-2'>
         <button
           onClick={() => setMediaType('video')}

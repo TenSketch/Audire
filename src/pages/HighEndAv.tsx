@@ -162,8 +162,6 @@ export default function HighEndAV() {
           </p>
         </motion.div>
       </section>
-
-      {/* ✅ Full-width footer outside the constrained section */}
       <Footer />
     </>
   );
