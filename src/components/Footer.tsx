@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Logo from '../assets/images/Logo.jpg'; // Adjust path if needed
 
 export default function Footer() {
   return (
@@ -8,7 +9,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-10 text-gray-800">
         {/* Company */}
         <div>
-          <h3 className="text-xl font-semibold mb-3">Audire Technologies</h3>
+          <div className="flex items-center gap-3 mb-3">
+            <img
+              src={Logo}
+              alt="Audire Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <h3 className="text-xl font-semibold">Audire Technologies</h3>
+          </div>
           <p className="text-sm text-gray-600 leading-relaxed">
             Experience high-end AV, immersive home theater, and seamless automation — all integrated under one vision of luxury and precision.
           </p>
@@ -33,14 +41,30 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Quick Links (optional) */}
+        {/* Quick Links */}
         <div>
           <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
           <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#about" className="hover:text-black transition">About Us</a></li>
-            <li><a href="#brands" className="hover:text-black transition">High-End AV</a></li>
-            <li><a href="#home-theater" className="hover:text-black transition">Home Theater</a></li>
-            <li><a href="#contact" className="hover:text-black transition">Contact</a></li>
+            <li>
+              <a href="#about" className="hover:text-black transition">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#brands" className="hover:text-black transition">
+                High-End AV
+              </a>
+            </li>
+            <li>
+              <a href="#home-theater" className="hover:text-black transition">
+                Home Theater
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="hover:text-black transition">
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
       </div>

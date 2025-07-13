@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
-import { LucideIcon } from "lucide-react";
-import { cn } from "../../lib/utils";
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LucideIcon } from 'lucide-react';
+import { cn } from '../../lib/utils';
+import Logo from '../../assets/images/Logo.jpg'; // Adjust path if needed
 
 interface NavItem {
   name: string;
@@ -20,7 +21,7 @@ interface NavBarProps {
 export function NavBar({ items, className }: NavBarProps) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState('Home');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,22 +31,22 @@ export function NavBar({ items, className }: NavBarProps) {
       setIsVisible(scrollPosition > heroHeight);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    if (location.pathname === "/high-end-av") {
-      setActiveTab("High-End AV");
-    } else if (location.pathname === "/") {
-      if (location.hash === "#about") {
-        setActiveTab("About");
-      } else if (location.hash === "#products") {
-        setActiveTab("Products");
+    if (location.pathname === '/high-end-av') {
+      setActiveTab('High-End AV');
+    } else if (location.pathname === '/') {
+      if (location.hash === '#about') {
+        setActiveTab('About');
+      } else if (location.hash === '#products') {
+        setActiveTab('Products');
       } else {
-        setActiveTab("Home");
+        setActiveTab('Home');
       }
     }
   }, [location]);
@@ -60,43 +61,42 @@ export function NavBar({ items, className }: NavBarProps) {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
-      window.history.pushState(null, "", `/#${elementId}`);
+      window.history.pushState(null, '', `/#${elementId}`);
       return true;
     }
     return false;
   };
 
-    const handleNavigation = (item: NavItem) => {
-    if (item.url === "/") {
-        navigate("/");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setActiveTab("Home");
-    } else if (item.url === "/high-end-av") {
-        navigate("/high-end-av");
-        setActiveTab("High-End AV");
-    } else if (item.url === "/home-theater") {
-        navigate("/home-theater");
-        setActiveTab("Home Theater");
-    } else if (item.url === "/automation-systems") {
-        navigate("/automation-systems");
-        setActiveTab("Automation Systems");
-    } else if (item.url.startsWith("/#")) {
-        const hash = item.url.substring(2);
+  const handleNavigation = (item: NavItem) => {
+    if (item.url === '/') {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveTab('Home');
+    } else if (item.url === '/high-end-av') {
+      navigate('/high-end-av');
+      setActiveTab('High-End AV');
+    } else if (item.url === '/home-theater') {
+      navigate('/home-theater');
+      setActiveTab('Home Theater');
+    } else if (item.url === '/automation-systems') {
+      navigate('/automation-systems');
+      setActiveTab('Automation Systems');
+    } else if (item.url.startsWith('/#')) {
+      const hash = item.url.substring(2);
 
-        if (location.pathname !== "/") {
-        navigate("/");
+      if (location.pathname !== '/') {
+        navigate('/');
         setTimeout(() => scrollToElement(hash), 300);
-        } else {
+      } else {
         scrollToElement(hash);
-        }
+      }
 
-        setActiveTab(item.name);
+      setActiveTab(item.name);
     }
-    };
-
+  };
 
   return (
     <AnimatePresence>
@@ -105,13 +105,33 @@ export function NavBar({ items, className }: NavBarProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           className={cn(
-            "fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-auto",
+            'fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-auto',
             className
           )}
         >
-          <div className="flex items-center gap-3 bg-background/50 border border-border backdrop-blur-lg py-1 px-3 rounded-full shadow-lg">
+          <div className="flex items-center gap-4 bg-background/50 border border-border backdrop-blur-lg py-1 px-4 rounded-full shadow-lg">
+            {/* Logo Button */}
+            <button
+              onClick={() => {
+                navigate('/');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveTab('Home');
+              }}
+              className="flex items-center gap-2 px-2"
+            >
+              <img
+                src={Logo}
+                alt="Audire Logo"
+                className="w-8 h-8 rounded-full object-contain"
+              />
+              <span className="hidden md:inline text-sm text-primary font-400">
+                Audire
+              </span>
+            </button>
+
+            {/* Navigation Items */}
             {items.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.name;
@@ -121,9 +141,9 @@ export function NavBar({ items, className }: NavBarProps) {
                   key={item.name}
                   onClick={() => handleNavigation(item)}
                   className={cn(
-                    "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                    "text-foreground/80 hover:text-primary",
-                    isActive && "bg-muted text-primary"
+                    'relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors',
+                    'text-foreground/80 hover:text-primary',
+                    isActive && 'bg-muted text-primary'
                   )}
                 >
                   <span className="hidden md:inline">{item.name}</span>
@@ -137,7 +157,7 @@ export function NavBar({ items, className }: NavBarProps) {
                       className="absolute inset-0 w-full bg-primary/10 rounded-full -z-10"
                       initial={false}
                       transition={{
-                        type: "spring",
+                        type: 'spring',
                         stiffness: 300,
                         damping: 30,
                       }}

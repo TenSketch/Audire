@@ -9,13 +9,12 @@ import {
   WheelEvent,
 } from 'react';
 import { motion } from 'framer-motion';
-import Image from '../../assets/images/background1.jpg'; // Adjust the import path as needed
-
+import ParticleBackground from '../ui/ParticleBackground';
+// import Logo from '../../assets/images/Logo.jpg'; // Adjust path if needed
 interface ScrollExpandMediaProps {
   mediaType?: 'video' | 'image';
   mediaSrc: string;
   posterSrc?: string;
-  bgImageSrc: string;
   title?: string;
   date?: string;
   scrollToExpand?: string;
@@ -27,7 +26,6 @@ const ScrollExpandMedia = ({
   mediaType = 'video',
   mediaSrc,
   posterSrc,
-  bgImageSrc,
   title,
   date,
   scrollToExpand,
@@ -86,8 +84,7 @@ const ScrollExpandMedia = ({
         e.preventDefault();
       } else if (!mediaFullyExpanded) {
         e.preventDefault();
-        // Increase sensitivity for mobile, especially when scrolling back
-        const scrollFactor = deltaY < 0 ? 0.008 : 0.005; // Higher sensitivity for scrolling back
+        const scrollFactor = deltaY < 0 ? 0.008 : 0.005;
         const scrollDelta = deltaY * scrollFactor;
         const newProgress = Math.min(
           Math.max(scrollProgress + scrollDelta, 0),
@@ -157,14 +154,12 @@ const ScrollExpandMedia = ({
 
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
-
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
-
   const firstWord = title ? title.split(' ')[0] : '';
   const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
 
@@ -176,16 +171,25 @@ const ScrollExpandMedia = ({
       <section className='relative flex flex-col items-center justify-start min-h-[100dvh]'>
         <div className='relative w-full flex flex-col items-center min-h-[100dvh]'>
           <motion.div
-            className="absolute inset-0 z-0 h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: bgImageSrc ? `url(${bgImageSrc})` : 'none',
-              backgroundColor: !bgImageSrc ? '#000' : undefined, // fallback for no image
-            }}
+            className="absolute inset-0 z-0 h-full bg-black"
+            style={{ backgroundColor: '#000' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 - scrollProgress }}
             transition={{ duration: 0.1 }}
           />
+          {/* Fixed Logo + Title Top Left
+          <div className="fixed top-6 left-6 z-30 flex items-center gap-3 transition-opacity duration-500"
+              style={{ opacity: mediaFullyExpanded ? 0 : 1 }}>
+            <img
+              src={Logo}
+              alt="Audire Logo"
+              className="w-10 h-10 object-contain rounded"
+            />
+            <span className="text-white text-xl font-semibold tracking-wide">Audire Technologies</span>
+          </div> */}
 
+
+          <ParticleBackground className="opacity-70" />
 
           <div className='container mx-auto flex flex-col items-center justify-start relative z-10'>
             <div className='flex flex-col items-center justify-center w-full h-[100dvh] relative'>
@@ -200,69 +204,38 @@ const ScrollExpandMedia = ({
                 }}
               >
                 {mediaType === 'video' ? (
-                  mediaSrc.includes('youtube.com') ? (
-                    <div className='relative w-full h-full pointer-events-none'>
-                      <iframe
-                        width='100%'
-                        height='100%'
-                        src={
-                          mediaSrc.includes('embed')
-                            ? mediaSrc +
-                              (mediaSrc.includes('?') ? '&' : '?') +
-                              'autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1'
-                            : mediaSrc.replace('watch?v=', 'embed/') +
-                              '?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=' +
-                              mediaSrc.split('v=')[1]
-                        }
-                        className='w-full h-full rounded-xl'
-                        frameBorder='0'
-                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                        allowFullScreen
-                      />
-                      <div
-                        className='absolute inset-0 z-10'
-                        style={{ pointerEvents: 'none' }}
-                      ></div>
-
-                      <motion.div
-                        className='absolute inset-0 bg-black/30 rounded-xl'
-                        initial={{ opacity: 0.7 }}
-                        animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    </div>
-                  ) : (
-                    <div className='relative w-full h-full pointer-events-none'>
-                      <video
-                        src={mediaSrc}
-                        poster={posterSrc}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload='auto'
-                        className='w-full h-full object-cover rounded-xl'
-                        controls={false}
-                        disablePictureInPicture
-                        disableRemotePlayback
-                      />
-                      <div
-                        className='absolute inset-0 z-10'
-                        style={{ pointerEvents: 'none' }}
-                      ></div>
-
-                      <motion.div
-                        className='absolute inset-0 bg-black/30 rounded-xl'
-                        initial={{ opacity: 0.7 }}
-                        animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    </div>
-                  )
+                  <div className='relative w-full h-full pointer-events-none'>
+                    <video
+                      src={mediaSrc}
+                      poster={posterSrc}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload='auto'
+                      className='w-full h-full object-cover rounded-xl'
+                      controls={false}
+                      disablePictureInPicture
+                      disableRemotePlayback
+                    />
+                    <div
+                      className='absolute inset-0 z-10'
+                      style={{ pointerEvents: 'none' }}
+                    ></div>
+                    <motion.div
+                      className='absolute inset-0 bg-black/30 rounded-xl'
+                      initial={{ opacity: 0.7 }}
+                      animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
                 ) : (
                   <div className='relative w-full h-full'>
-                    <img src={Image} alt="" />
-
+                    <img
+                      src={mediaSrc}
+                      alt=''
+                      className='w-full h-full object-cover rounded-xl'
+                    />
                     <motion.div
                       className='absolute inset-0 bg-black/50 rounded-xl'
                       initial={{ opacity: 0.7 }}
@@ -271,7 +244,6 @@ const ScrollExpandMedia = ({
                     />
                   </div>
                 )}
-
                 <div className='flex flex-col items-center text-center relative z-10 mt-4 transition-none'>
                   {date && (
                     <p
