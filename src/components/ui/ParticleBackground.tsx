@@ -37,6 +37,7 @@ const ParticleBackground = ({ className = '' }: ParticleBackgroundProps) => {
     const createParticles = () => {
       const particles: Particle[] = [];
       const particleCount = Math.min(50, Math.floor(window.innerWidth / 24)); // Reduced particles
+      const grey = Math.floor(Math.random() * 55 + 200); // Bright grey to white
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -46,7 +47,8 @@ const ParticleBackground = ({ className = '' }: ParticleBackgroundProps) => {
           vy: (Math.random() - 0.5) * 1.2,
           size: Math.random() * 3 + 1,
           opacity: Math.random() * 0.8 + 0.4,
-          color: `rgba(96, 165, 250, ${Math.random() * 0.6 + 0.4})`,
+          color: `rgba(${grey}, ${grey}, ${grey}, ${Math.random() * 0.6 + 0.4})`,
+
         });
       }
 
